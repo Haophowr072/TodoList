@@ -1,8 +1,11 @@
 package com.example.todolist.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Todo {
-    private int id;
+    private String detail;
     private String title;
-    private String description;
-    private String completed;
 }
