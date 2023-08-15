@@ -4,6 +4,7 @@ import com.example.todolist.ConnectSqlServer;
 import com.example.todolist.entity.Task;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,8 +29,8 @@ public class TaskDAO implements ITaskDAO{
                 String title = rs.getString("title");
                 String description = rs.getString("description");
                 Boolean isCompleted = rs.getBoolean("isCompleted");
-
-                resutl.add(new Task(id, title, description, isCompleted));
+//
+//                resutl.add(new Task(id, title, description, isCompleted));
             }
         }catch (SQLException ex){
             System.out.println(ex);

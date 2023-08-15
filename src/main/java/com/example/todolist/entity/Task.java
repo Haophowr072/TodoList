@@ -8,15 +8,13 @@ import java.io.Serializable;
 @Data
 @Table(name = "task")
 @Entity
-public class Task implements Serializable {
-    private static final long serialVersionUID = -297553281792804396L;
+public class Task{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     @Column(name = "title")
     private String title;
     @Column(name = "description")
     private String description;
-    @Column(name = "isCompleted")
+    @Column(name = "is_completed")
     private Boolean isCompleted;
 }

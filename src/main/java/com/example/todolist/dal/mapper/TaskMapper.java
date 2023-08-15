@@ -24,4 +24,13 @@ public class TaskMapper {
         }
         return result;
     }
+
+    public static Task toTask(TaskDto taskDto){
+        Task tmp = new Task();
+        tmp.setId(taskDto.getId());
+        tmp.setTitle(taskDto.getTitle());
+        tmp.setDescription(taskDto.getDescription());
+        tmp.setIsCompleted(taskDto.getIsCompleted());
+        return tmp;
+    }
 }

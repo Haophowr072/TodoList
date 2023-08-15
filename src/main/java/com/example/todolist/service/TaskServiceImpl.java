@@ -1,25 +1,68 @@
 package com.example.todolist.service;
-import com.example.todolist.dal.dao.ITaskDAO;
-import com.example.todolist.dal.dao.TaskDAO;
 import com.example.todolist.dal.dto.TaskDto;
 import com.example.todolist.dal.mapper.TaskMapper;
+import com.example.todolist.dal.repository.TaskRepository;
 import com.example.todolist.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class TaskServiceImpl implements ITaskService {
     @Autowired
-    private ITaskDAO taskDAO;
+    private TaskRepository taskRepository;
     @Override
     public List<TaskDto> getAllTask() {
-        ArrayList<Task> tasks = taskDAO.getAllTask();
+        //repostory lun trả về kiểu dữ liệu Entity
+        List<Task> tasks = taskRepository.findAll();
         List<TaskDto> result = TaskMapper.toTaskDtoList(tasks);
         return result;
     }
+
+    @Override
+    public TaskDto getById(String id) {
+        Task task = taskRepository.findById(id).orElse(null);
+        if(task == null)
+            return null;
+
+        TaskDto result = TaskMapper.toTaskDto(task);
+
+        return result;
+    }
+    //Search Task
+    @Override
+    public List<TaskDto> search(String keyword) {
+        List<Task> tasks = taskRepository.findAll();
+        List<TaskDto> result = new ArrayList<>();
+        for(Task task : tasks){
+            if(task.getTitle().contains(keyword)){
+                result.add(TaskMapper.toTaskDto(task));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public TaskDto insert(TaskDto taskDto) {
+
+        try{
+            String uuid = UUID.randomUUID().toString();
+            taskDto.setId(uuid);
+            taskDto.setIsCompleted(false);
+            Task task = TaskMapper.toTask(taskDto);
+            taskRepository.save(task);
+
+            return taskDto;
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+
 }
 
 
