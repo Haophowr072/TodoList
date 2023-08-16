@@ -2,7 +2,6 @@ package com.example.todolist.dal.mapper;
 
 import com.example.todolist.dal.dto.TaskDto;
 import com.example.todolist.entity.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,8 @@ public class TaskMapper {
         tmp.setTitle(task.getTitle());
         tmp.setDescription(task.getDescription());
         tmp.setIsCompleted(task.getIsCompleted());
+        tmp.setCreatedDate(task.getCreatedDate());
+        tmp.setUpdatedDate(task.getUpdatedDate());
         return tmp;
     }
 
@@ -31,6 +32,8 @@ public class TaskMapper {
         tmp.setTitle(taskDto.getTitle());
         tmp.setDescription(taskDto.getDescription());
         tmp.setIsCompleted(taskDto.getIsCompleted());
+        tmp.setCreatedDate(taskDto.getCreatedDate());
+        tmp.setUpdatedDate(taskDto.getUpdatedDate());
         return tmp;
     }
 }

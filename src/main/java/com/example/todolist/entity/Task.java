@@ -2,8 +2,10 @@ package com.example.todolist.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Table(name = "task")
@@ -17,4 +19,8 @@ public class Task{
     private String description;
     @Column(name = "is_completed")
     private Boolean isCompleted;
+    @Column(name = "created_date")
+    private Date createdDate;
+    @Column(name = "updated_date")
+    private Date updatedDate;
 }
