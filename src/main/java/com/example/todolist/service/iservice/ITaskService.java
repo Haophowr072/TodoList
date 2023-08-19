@@ -1,4 +1,4 @@
-package com.example.todolist.service;
+package com.example.todolist.service.iservice;
 
 import com.example.todolist.dal.dto.TaskDto;
 import java.util.List;

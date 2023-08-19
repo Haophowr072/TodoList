@@ -1,6 +1,7 @@
 package com.example.todolist.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Data
-@Table(name = "task")
+@Table(name = "tasks")
 @Entity
 public class Task{
     @Id
@@ -23,4 +24,6 @@ public class Task{
     private Date createdDate;
     @Column(name = "updated_date")
     private Date updatedDate;
+    @Column(name = "user_id")
+    private String userId;
 }

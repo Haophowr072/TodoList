@@ -1,8 +1,9 @@
-package com.example.todolist.service;
+package com.example.todolist.service.serviceimlp;
 import com.example.todolist.dal.dto.TaskDto;
 import com.example.todolist.dal.mapper.TaskMapper;
 import com.example.todolist.dal.repository.TaskRepository;
 import com.example.todolist.entity.Task;
+import com.example.todolist.service.iservice.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public TaskDto getById(String id) {
-        Task task = taskRepository.findById(id).orElse(null);
+    public TaskDto getById(String userId) {
+        Task task = taskRepository.findById(userId).orElse(null);
         if(task == null)
             return null;
 
@@ -47,14 +48,12 @@ public class TaskServiceImpl implements ITaskService {
 
     @Override
     public TaskDto insert(TaskDto taskDto) {
-
         try{
             String uuid = UUID.randomUUID().toString();
             taskDto.setId(uuid);
             taskDto.setIsCompleted(false);
             taskDto.setCreatedDate(new Date());
             Task task = TaskMapper.toTask(taskDto);
-
             //lưu vào task
             taskRepository.save(task);
 
